@@ -1,0 +1,8 @@
+Django>=5.2,<6.0
+djangorestframework>=3.16
+channels>=4.2
+channels-redis>=4.2
+daphne>=4.1
+django-environ>=0.12
+# PostgreSQL ishlatmoqchi bo'lsangiz quyidagini oching:
+# psycopg[binary]>=3.2

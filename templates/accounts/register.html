@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <h1>Ro'yxatdan o'tish</h1>
+  {% include "accounts/_form.html" with submit_label="Register" %}
+  <p class="muted">Akkauntingiz bormi? <a href="{% url 'accounts:login' %}">Kirish</a></p>
+</div>
+{% endblock %}

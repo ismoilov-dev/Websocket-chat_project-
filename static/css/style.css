@@ -1,0 +1,206 @@
+/* ============ Asosiy ranglar ============ */
+:root {
+  --bg: #f0f2f5;
+  --panel: #ffffff;
+  --border: #e3e6ea;
+  --text: #1c1e21;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --mine: #dbeafe;
+  --theirs: #f3f4f6;
+  --online: #22c55e;
+  --offline: #9ca3af;
+  --danger: #dc2626;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; min-height: 0; display: flex; }
+
+a { color: var(--primary); }
+.muted { color: var(--muted); }
+.hidden { display: none !important; }
+
+/* ============ Topbar ============ */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.brand { font-weight: 700; text-decoration: none; color: var(--text); }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.topbar-right form { margin: 0; }
+
+/* ============ Tugmalar ============ */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+.btn-ghost { background: transparent; border: 1px solid var(--border); }
+
+/* ============ Login / Register ============ */
+.auth-card {
+  margin: 40px auto;
+  width: 100%;
+  max-width: 380px;
+  background: var(--panel);
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  align-self: flex-start;
+}
+.auth-card h1 { margin-top: 0; font-size: 22px; }
+.auth-form { display: flex; flex-direction: column; gap: 6px; }
+.auth-form label { font-size: 14px; margin-top: 8px; }
+.auth-form input {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.auth-form button { margin-top: 16px; }
+.auth-form .helptext, .auth-form ul { font-size: 12px; color: var(--muted); }
+.field-error { color: var(--danger); font-size: 12px; }
+.alert {
+  background: #fee2e2;
+  color: var(--danger);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* ============ Chat layout ============ */
+.chat-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 0;
+}
+
+.sidebar {
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+}
+.sidebar h2 { font-size: 14px; text-transform: uppercase; color: var(--muted); padding: 16px 16px 8px; margin: 0; }
+
+.user-list { list-style: none; margin: 0; padding: 0; }
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+}
+.user-item:hover { background: var(--bg); }
+.user-item.active { background: var(--mine); }
+.user-item .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--offline);
+  flex-shrink: 0;
+}
+.dot.online { background: var(--online); }
+
+.badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+/* ============ Chat panel ============ */
+.chat-panel { display: flex; flex-direction: column; min-height: 0; }
+.chat-empty { margin: auto; color: var(--muted); }
+.chat-box { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.chat-status { font-size: 12px; color: var(--muted); }
+.conn-state { font-size: 12px; color: var(--offline); }
+.conn-state.connected { color: var(--online); }
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.message {
+  max-width: 65%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.message.mine { align-self: flex-end; background: var(--mine); border-bottom-right-radius: 4px; }
+.message.theirs { align-self: flex-start; background: var(--theirs); border-bottom-left-radius: 4px; }
+
+.message .meta {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.message .ticks.read { color: var(--primary); }
+
+.typing { padding: 0 20px 6px; font-size: 13px; color: var(--muted); font-style: italic; }
+
+.message-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+}
+.message-form input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* ============ Mobil ============ */
+@media (max-width: 700px) {
+  .chat-layout { grid-template-columns: 1fr; grid-template-rows: 180px 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+  .message { max-width: 85%; }
+}

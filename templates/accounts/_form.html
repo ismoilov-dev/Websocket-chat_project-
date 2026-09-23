@@ -1,0 +1,13 @@
+{# Login va Register uchun umumiy forma bo'lagi #}
+<form method="post" class="auth-form" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <div class="alert">{{ form.non_field_errors|join:" " }}</div>
+  {% endif %}
+  {% for field in form %}
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {{ field }}
+    {% if field.errors %}<small class="field-error">{{ field.errors|join:" " }}</small>{% endif %}
+  {% endfor %}
+  <button type="submit" class="btn btn-primary">{{ submit_label }}</button>
+</form>
